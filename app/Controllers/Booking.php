@@ -23,6 +23,15 @@ class Booking extends BaseController
             'booking' => $booking
         ];
 
-        echo view('pages/search');
+        return view('pages/history', $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            'title' => 'Form Tambah Data Booking',
+        ];
+
+        return view('pages/booking');
     }
 }

@@ -25,6 +25,13 @@ class Pages extends BaseController
         echo view("layout/footer");
     }
 
+    public function booking()
+    {
+        echo view("layout/header");
+        echo view("pages/booking");
+        echo view("layout/footer");
+    }
+
     public function history()
     {
         echo view("layout/header");

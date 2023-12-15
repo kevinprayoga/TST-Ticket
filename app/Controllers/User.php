@@ -15,14 +15,16 @@ class User extends BaseController
 
     public function index()
     {
-        $users = $this->userModel->findAll();
-        dd($users);
-
         $data = [
-            'title' => 'Daftar User',
-            'user' => $users
+            'title' => 'Login User',
+            'user' => $this->userModel->findAll()
         ];
 
-        echo view('pages/search');
+        return view('pages/login');
+    }
+
+    public function checkCredentials()
+    {
+        // $this->request->getVar()
     }
 }

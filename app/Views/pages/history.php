@@ -1,1 +1,1 @@
-<p>Ini History Page</p>
+<p>Ini History Pembelian Tiket Page</p>
