@@ -18,17 +18,17 @@ class Pages extends BaseController
         echo view("layout/footer");
     }
 
-    public function register()
-    {
-        echo view("layout/header");
-        echo view("pages/register");
-        echo view("layout/footer");
-    }
-
     public function search()
     {
         echo view("layout/header");
         echo view("pages/search");
+        echo view("layout/footer");
+    }
+
+    public function history()
+    {
+        echo view("layout/header");
+        echo view("pages/history");
         echo view("layout/footer");
     }
 }
