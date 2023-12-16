@@ -1,1 +1,0 @@
-<p>Ini Search Page</p>

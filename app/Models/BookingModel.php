@@ -8,6 +8,5 @@ class BookingModel extends Model
 {
     protected $table      = 'booking';
     protected $primaryKey = 'pnr';
-    protected $useTimestamps = true;
-    protected $returnType = 'object';
+    protected $allowedFields = ['honorifics', 'first_name', 'last_name', 'id_number', 'flight_id'];
 }
