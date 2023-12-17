@@ -26,6 +26,7 @@ class Booking extends BaseController
     
     public function save()
     {
+        helper("text");
         //validasi input
         if(!$this->validate([
             'honorifics' => [
@@ -57,15 +58,19 @@ class Booking extends BaseController
             session()->setFlashdata('pesan', 'Data gagal ditambahkan.');
         }
 
-        $this->bookingModel->save([
-            'honorifics' => $this->request->getVar('honorifics'),
-            'first_name' => url_title($this->request->getVar('first_name'), '-', true),
-            'last_name' => url_title($this->request->getVar('last_name'), '-', true),
-            'id_number' => $this->request->getVar('id_number'),
-            'flight_id' => $this->request->getVar('flight_id')
-        ]);
+        $count = $this->request->getPost('count');
 
-        // session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+        for ($i = 0; $i < $count; $i++) {
+            $this->bookingModel->save([
+                'booking_id' => $this->request->getVar(increment_string('BK', 1)),
+                'honorifics' => $this->request->getVar('honorifics')[$i],
+                'first_name' => $this->request->getVar('first_name')[$i],
+                'last_name' => $this->request->getVar('last_name')[$i],
+                'id_number' => $this->request->getVar('id_number')[$i],
+                'flight_id' => $this->request->getVar('flight_id'),
+                'quantity' => $this->request->getVar('count')
+            ]);
+        }
 
         return redirect()->to('/booking');
     }
