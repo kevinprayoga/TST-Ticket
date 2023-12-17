@@ -36,7 +36,7 @@ class PaymentController extends ResourceController
         ];
 
         if ($data['payment_data'] == null) {
-            return $this->failNotFound("Data transaksi tidak ditemukan!");
+            return $this->failNotFound("Data pembayaran tidak ditemukan!");
         }
 
         return $this->respond($data, 200);
@@ -50,7 +50,7 @@ class PaymentController extends ResourceController
     public function create()
     {
         $rules = $this->validate([
-            'booking_id'=> 'required|varchar(5)',
+            'booking_id'=> 'required|alpha_numeric',
             'price'     => 'required|integer',
             'base_price'=> 'required|integer',
             'status'    => 'required|in_list[Success,Failed,Pending]'
@@ -72,9 +72,9 @@ class PaymentController extends ResourceController
         ]);
 
         $response = [
-            'message' => 'Transaksi Berhasil Ditambahkan',
+            'message' => 'Pembayaran berhasil ditambahkan',
         ];
-
+        
         return $this->respondCreated($response);
     }
 
@@ -86,7 +86,7 @@ class PaymentController extends ResourceController
     public function update($payment_id = null)
     {
         $rules = $this->validate([
-            'booking_id'=> 'required|varchar(5)',
+            'booking_id'=> 'required|alpha_numeric',
             'price'     => 'required|integer',
             'base_price'=> 'required|integer',
             'status'    => 'required|in_list[Success,Failed,Pending]'
@@ -108,7 +108,7 @@ class PaymentController extends ResourceController
         ]);
 
         $response = [
-            'message' => 'Transaksi Berhasil Diubah',
+            'message' => 'Pembayaran berhasil diubah',
         ];
 
         return $this->respond($response, 200);
@@ -124,7 +124,7 @@ class PaymentController extends ResourceController
         $this->model->delete($payment_id);
 
         $response = [
-            'message' => 'Transaksi Berhasil Dihapus'
+            'message' => 'Pembayaran berhasil dihapus'
         ];
 
         return $this->respondDeleted($response);
