@@ -1,7 +1,7 @@
 <div class="container mb-5">
     <div class="row">
         <div class="col">
-            <h1>Booking</h1>
+            <h1 class='fw-semibold'><emp>Booking</h1>
             <?php if(session()->getFlashdata('pesan')) : ?>  
                 <div class="alert alert-danger" role='alert'>
                     <?= session()->getFlashdata('pesan'); ?>
@@ -21,7 +21,7 @@
                     <input type="hidden" name="flight_id" value="<?= $flight_id; ?>">
                     <input type="hidden" name="username" value="<?= $username; ?>">
 
-                    <h3 class='fs-6 py-2 pt-3'>Penumpang <?=$i+1;?></h3>
+                    <h3 class='fs-6 py-2 pt-3 fw-semibold'>Penumpang <?=$i+1;?></h3>
                     <div class="mb-3">
                         <label for="honorifics" class="form-label">Honorifics</label>
                         <select class="form-select" aria-label="honorificts" name="honorifics[]" autofocus>
