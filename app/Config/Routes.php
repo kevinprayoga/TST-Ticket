@@ -7,8 +7,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/booking', 'Booking::create');
-$routes->post('/booking/(:segment)', 'Booking::$1'); 
+
+$routes->group('booking', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->get('', 'BookingController::viewBookingPage');
+    $routes->post('save', 'BookingController::save');
+});
 
 $routes->resource('payment', ['controller' => 'PaymentController']);
 
