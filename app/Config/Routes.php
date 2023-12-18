@@ -12,12 +12,3 @@ $routes->group('booking', ['namespace' => 'App\Controllers'], function($routes) 
     $routes->get('', 'BookingController::viewBookingPage');
     $routes->post('save', 'BookingController::save');
 });
-
-$routes->resource('payment', ['controller' => 'PaymentController']);
-
-// resource simplify these routing:
-// $routes->get('/payment', 'PaymentController::index');
-// $routes->get('/payment/(:num)', 'PaymentController::show/$1');
-// $routes->post('/payment', 'PaymentController::create');
-// $routes->put('/payment/(:num)', 'PaymentController::update/$1');
-// $routes->delete('/payment/(:num)', 'PaymentController::delete/$1');

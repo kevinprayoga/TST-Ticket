@@ -60,9 +60,6 @@ $kode = ['CGK', 'LOP', 'LMA', 'OPI', 'SAN'];
             </thead>
             <tbody class="table-group-divider">
                 <tr>
-                    <?php for ($i=0; $i < $kode; $i++) { 
-                        # code...
-                    } ?>
                     <th scope="row">1</th>
                     <td>TST808</td>
                     <td>GBK</td>
