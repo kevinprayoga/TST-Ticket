@@ -13,6 +13,8 @@ $routes->group('booking', ['namespace' => 'App\Controllers'], function($routes) 
     $routes->post('save', 'BookingController::save');
 });
 
+$routes->get('/pnrAPI', 'PnrAPI::index');
+
 $routes->resource('payment', ['controller' => 'PaymentController']);
 
 // resource simplify these routing:
