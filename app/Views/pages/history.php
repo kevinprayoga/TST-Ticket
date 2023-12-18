@@ -1,1 +1,7 @@
-<p>Ini History Pembelian Tiket Page</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
+</div>

@@ -13,4 +13,6 @@ $routes->group('booking', ['namespace' => 'App\Controllers'], function($routes) 
     $routes->post('save', 'BookingController::save');
 });
 
+$routes->get('/history', 'BookingController::viewHistoryPage');
+
 $routes->get('/pnrAPI', 'PnrAPI::index');
