@@ -11,11 +11,14 @@
     body {
       font-family: sans-serif;
     }
+    header > div > div > ul > li > a:hover {
+      background-color: grey;
+    }
   </style>
 </head>
 
 <body>
-  <header class="p-3 mb-3 border-bottom bg-dark">
+  <header class="p-3 mb-3 border-bottom bg-dark" >
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-between">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">

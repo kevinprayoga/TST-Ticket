@@ -13,6 +13,11 @@ $routes->group('booking', ['namespace' => 'App\Controllers'], function($routes) 
     $routes->post('save', 'BookingController::save');
 });
 
-$routes->get('/history', 'BookingController::viewHistoryPage');
+$routes->group('history', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->get('', 'BookingController::viewHistoryPage');
+    $routes->get('success', 'BookingController::viewHistorySuccessPage');
+    $routes->get('pending', 'BookingController::viewHistoryPendingPage');
+    $routes->get('failed', 'BookingController::viewHistoryFailedPage');
+});
 
 $routes->get('/pnrAPI', 'PnrAPI::index');
