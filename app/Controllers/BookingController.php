@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
+use App\Models\Payment;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
@@ -18,16 +19,18 @@ class BookingController extends ResourceController
     
         return $randomString;
     }
+
     public function save()
     {
         $model_1 = model(Booking::class);
         $model_2 = model(Pnr::class);
 
         $booking_id = self::generateRandomString();
+        $price = $this->request->getPost('price'); // Mark Not Done
 
         //insert into booking
         $username = $this->request->getPost('username');
-        $model_1->addBooking($booking_id, $username);
+        $model_1->addBooking($booking_id, $username, $price);
 
         //insert into pnr
         $quantity = $this->request->getPost('count');
@@ -47,9 +50,10 @@ class BookingController extends ResourceController
     public function viewBookingPage()
     {
         $model_1 = model(Booking::class);
+        $username = $this->request->getPost('username');
         $data = [
             'title' => 'Booking',
-            'booking' => $model_1->getBooking()
+            'booking' => $model_1->getBooking($username)
         ];
         return view('layout/header', $data).view('pages/booking', $data).view('layout/footer');
     }
