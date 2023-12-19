@@ -8,5 +8,4 @@ class UserModel extends Model
 {
     protected $table      = 'user';
     protected $primaryKey = 'username';
-    protected $returnType = 'object';
 }
