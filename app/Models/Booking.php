@@ -37,4 +37,11 @@ class Booking extends Model
         $query = $db->query('SELECT SUM(price) AS total_price, MONTH(created_at) AS month FROM booking GROUP BY MONTH(created_at)');
         return $query->getResult();
     }
+
+    public function getStatus($booking_id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT status FROM booking WHERE booking_id = ?', [$booking_id]);
+        return $query->getResult();
+    }
 }
