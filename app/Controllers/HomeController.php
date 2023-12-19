@@ -16,7 +16,6 @@ class HomeController extends ResourceController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $output = curl_exec($ch);
-
         curl_close($ch);
 
         return $output;
@@ -24,7 +23,7 @@ class HomeController extends ResourceController
 
     public function home()
     {
-        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $response_airport = $this->getData('localhost:8080/airport/get-all');
         $data_airport = json_decode($response_airport);
 
         $viewData = [
@@ -44,10 +43,10 @@ class HomeController extends ResourceController
             'capacity' => $this->request->getGet('capacity')
         ];
 
-        $response_flight = $this->getData('localhost:3000/flight/get', $getData);
+        $response_flight = $this->getData('localhost:8080/flight/get', $getData);
         $data_flight = json_decode($response_flight);
 
-        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $response_airport = $this->getData('localhost:8080/airport/get-all');
         $data_airport = json_decode($response_airport);
 
         foreach ($data_flight->flights as $flight) {

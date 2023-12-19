@@ -23,9 +23,9 @@ class Pnr extends Model
         $result = $query->getResult();
 
         if (!empty($result)) {
-            return true;
+            return $result;
         } else {
-            return false;
+            return null;
         }
     }
 }
