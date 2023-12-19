@@ -21,6 +21,10 @@ class HomeController extends ResourceController
         return $output;
     }
 
+    public function tax($price) {
+        return $price * 1.2;
+    }
+
     public function home()
     {
         $response_airport = $this->getData('localhost:8080/airport/get-all');
@@ -50,8 +54,7 @@ class HomeController extends ResourceController
         $data_airport = json_decode($response_airport);
 
         foreach ($data_flight->flights as $flight) {
-            $price = $flight->price;
-            $price += ($price * 0.2);
+            $flight->price = $this->tax($flight->price);
         }
 
         // var_dump($getData);
