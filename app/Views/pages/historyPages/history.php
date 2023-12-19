@@ -1,7 +1,7 @@
 <div class="d-flex w-100 mt-5 align-items-center flex-column">
     <div class="text-center border bg-primary-subtle border w-100">
         <div class="d-flex justify-content-center align-items-center w-100">
-            <div style="height: 50px" class="d-flex col justify-content-center bg-primary"><a class="d-inline-flex align-items-center text-black text-decoration-none focus-ring fw-semibold" href="/history/success">
+            <div style="height: 50px" class="d-flex col justify-content-center"><a class="d-inline-flex align-items-center text-black text-decoration-none focus-ring fw-semibold" href="/history/success">
                     Success
                 </a></div>
             <div class="col"><a class="d-inline-flex align-items-center text-black text-decoration-none focus-ring fw-semibold" href="/history/pending">

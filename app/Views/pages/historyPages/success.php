@@ -39,7 +39,7 @@
                                 <h5 class="fw-bold">Created:</h5>
                                 <h5><?= esc($item->created_at); ?></h5>
                             </div>
-                            <h5 class="bg-success px-4 py-2 rounded-3 fw-semibold"><?= esc($item->status); ?></h5>
+                            <h5 class="bg-success text-white px-4 py-2 rounded-3 fw-semibold"><?= esc($item->status); ?></h5>
                         </div>
                     </div>
                 <?php
