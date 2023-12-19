@@ -9,7 +9,7 @@
             <div class="input-group-vertical">
                 <label for="origin" class="form-label">From</label>
                 <select class="form-select" aria-label="origin" name="origin">
-                    <option selected disabled hidden>Pick an Airport</option>
+                    <option selected hidden value="<?= $_GET['origin'] ?? ""; ?>"><?= $_GET['origin']; ?> (Last Selected)</option>
                     <?php foreach ($airports as $airport) : ?>
                         <option value="<?= $airport->iata; ?>"><?= $airport->iata; ?> - <?= $airport->name; ?></option>
                     <?php endforeach; ?>
@@ -18,7 +18,7 @@
             <div class="input-group-vertical">
                 <label for="destination" class="form-label">To</label>
                 <select class="form-select" aria-label="destination" name="destination">
-                    <option selected disabled hidden>Pick an Airport</option>
+                    <option selected hidden value="<?= $_GET['destination'] ?? ""; ?>"><?= $_GET['destination']; ?> (Last Selected)</option>
                     <?php foreach ($airports as $airport) : ?>
                         <option value="<?= $airport->iata; ?>"><?= $airport->iata; ?> - <?= $airport->name; ?></option>
                     <?php endforeach; ?>
@@ -36,7 +36,7 @@
         <div class="input-group-vertical my-3">
             <label for="capacity" class="form-label fw-bold">Passengers</label>
             <select class="form-select" aria-label="capacity" name="capacity">
-            <option selected disabled hidden value=<?= $_GET['capacity'] ?? ''; ?>> <?= $_GET['capacity'] ?? ''; ?> Person</option>
+                <option selected hidden value=<?= $_GET['capacity'] ?? 1; ?>> <?= $_GET['capacity'] ?? '1'; ?> Person</option>
                 <?php for ($i = 1; $i < 6; $i++) : ?>
                     <option value=<?= $i; ?>><?= $i; ?> Person</option>
                 <?php endfor; ?>

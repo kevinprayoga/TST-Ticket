@@ -50,8 +50,8 @@ class HomeController extends ResourceController
         $response_airport = $this->getData('localhost:3000/airport/get-all');
         $data_airport = json_decode($response_airport);
 
-        var_dump($getData);
-        var_dump($data_flight);
+        // var_dump($getData);
+        // var_dump($data_flight);
 
         $viewData = [
             'title' => 'Search Result',
