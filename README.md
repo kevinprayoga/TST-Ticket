@@ -4,10 +4,6 @@
 </div>
 <br>
 
-<div align="center">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Itim&size=48&pause=1000&color=4200FF&center=true&vCenter=true&random=false&width=1000&height=60&lines=Teknologi+Sistem+-+Terintegrasi;Sistem+Rumah+Sakit;Sistem+Apotek" alt="Typing SVG">
-</div>
-
 ## List of Contents
 
 1. [System Overview](#system-overview)
