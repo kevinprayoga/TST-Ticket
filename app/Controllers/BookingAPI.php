@@ -6,19 +6,19 @@ use App\Models\Booking;
 
 class BookingAPI extends ResourceController
 {
-    public function index()
+    public function sales()
     {
         $model = model(Booking::class);
-        $result = $model->getPriceAPI();
+        $result = $model->ticketSales();
         if ($result) {
             $data = [
                 'message' => 'success',
-                'booking' => $result
+                'sales' => $result
             ];
         } else {
             $data = [
                 'message' => 'failed',
-                'booking' => []
+                'sales' => []
             ];
         }
         return $this->respond($data, 200);

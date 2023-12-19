@@ -13,6 +13,7 @@
                 for ($i = 0; $i < $counter; $i++) {
                     ?>
                     <input type="hidden" name="count" value="<?= $counter; ?>">
+                    <input type="hidden" name="flight_id" value="<?= $flight_id; ?>">
 
                     <h3 class='fs-6 py-2 pt-3 fw-semibold'>Penumpang <?=$i+1;?></h3>
                     <div class="mb-3">
