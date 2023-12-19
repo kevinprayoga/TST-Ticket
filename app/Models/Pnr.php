@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class Pnr extends Model
 {
-    protected $table      = 'Pnr';
+    protected $table = 'Pnr';
     // protected $allowedFields = ['honorifics', 'first_name', 'last_name', 'id_number', 'flight_id', 'quantity', 'seat'];
 
-    public function addPnr($booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity)
+    public function addPnr($pnr, $booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity)
     {
         $db = \Config\Database::connect();
-        $query = $db->query('INSERT INTO pnr (booking_id, honorifics, first_name, last_name, id_number, flight_id, quantity) VALUES (?, ?, ?, ?, ?, ?, ?)', [$booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity]);
+        $query = $db->query('INSERT INTO pnr (id, booking_id, honorifics, first_name, last_name, id_number, flight_id, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [$pnr, $booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity]);
         return $query;
     }
 

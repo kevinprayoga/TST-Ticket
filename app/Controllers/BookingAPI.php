@@ -6,7 +6,7 @@ use App\Models\Booking;
 
 class BookingAPI extends ResourceController
 {
-    public function sales()
+    public function index()
     {
         $model = model(Booking::class);
         $result = $model->ticketSales();
