@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
-use App\Models\Home;
+use App\Models\Payment;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
@@ -49,8 +49,12 @@ class BookingController extends ResourceController
 
     public function viewBookingPage()
     {
+        $flight_id = $this->request->getGet('flight_id');
+        $capacity = $this->request->getGet('counter');
         $data = [
             'title' => 'Booking',
+            'flight_id' => $flight_id,
+            'counter' => $capacity
         ];
         return view('layout/header', $data).view('pages/booking').view('layout/footer');
     }
@@ -66,7 +70,7 @@ class BookingController extends ResourceController
 
         return view('layout/header', $data).view('pages/historyPages/history', $data).view('layout/footer');
     }
-    
+
     public function viewHistorySuccessPage()
     {
         $model = model(Booking::class);
