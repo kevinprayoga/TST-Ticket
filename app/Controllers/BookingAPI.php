@@ -9,7 +9,7 @@ class BookingAPI extends ResourceController
     public function index()
     {
         $model = model(Booking::class);
-        $result = $model->ticketSales();
+        $result = $model->ticketSale();
         if ($result) {
             $data = [
                 'message' => 'success',
