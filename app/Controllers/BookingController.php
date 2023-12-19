@@ -3,11 +3,26 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
-use App\Models\HomeController;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
 {
+    private function getData($url, $data = [])
+    {
+        $url = rtrim($url, '?'); // Remove trailing question mark if it exists
+        $url .= '?' . http_build_query($data);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $output;
+    }
+
     private static function generateRandomString() {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $randomString = '';
@@ -22,13 +37,17 @@ class BookingController extends ResourceController
 
     public function save()
     {
+        $flight_id = $this->request->getVar('flight_id');
+        $response_flight = $this->getData('localhost:3000/flight/get-per-id/', $flight_id);
+        $data_flight = json_decode($response_flight);
+
         $model_1 = model(Booking::class);
         $model_2 = model(Pnr::class);
 
         $booking_id = self::generateRandomString();
 
         //insert into booking
-        $price = $this->request->getPost('price');
+        $price = $data_flight->flight->price;
         $username = 'ilmagita';
         $model_1->addBooking($booking_id, $username, $price);
 
@@ -39,7 +58,6 @@ class BookingController extends ResourceController
             $first_name = $this->request->getPost('first_name')[$i];
             $last_name = $this->request->getPost('last_name')[$i];
             $id_number = $this->request->getPost('id_number')[$i];
-            $flight_id = $this->request->getPost('flight_id');
 
             $model_2->addPnr($booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity);
         }
