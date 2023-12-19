@@ -30,4 +30,11 @@ class Booking extends Model
         $query = $db->query('SELECT * FROM booking WHERE username = ?', [$username]);
         return $query->getResult();
     }
+
+    public function getPriceAPI()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT SUM(price) AS total_price, MONTH(created_at) AS month FROM booking GROUP BY MONTH(created_at)');
+        return $query->getResult();
+    }
 }

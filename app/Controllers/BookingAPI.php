@@ -9,8 +9,7 @@ class BookingAPI extends ResourceController
     public function index()
     {
         $model = model(Booking::class);
-        $username = 'ilmagita';
-        $result = $model->getBooking($username);
+        $result = $model->getPriceAPI();
         if ($result) {
             $data = [
                 'message' => 'success',

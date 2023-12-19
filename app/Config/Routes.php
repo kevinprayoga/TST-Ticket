@@ -22,3 +22,4 @@ $routes->group('history', ['namespace' => 'App\Controllers'], function($routes) 
 });
 
 $routes->get('/pnrAPI', 'PnrAPI::index');
+$routes->get('/bookingAPI', 'BookingAPI::index');
