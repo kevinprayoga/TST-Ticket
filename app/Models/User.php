@@ -6,6 +6,10 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table      = 'user';
-    protected $primaryKey = 'username';
+    public function loginProcess($username, $password)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM user WHERE username=? AND password=?", [$username, $password]);
+        return count($query->getResult());
+    }
 }

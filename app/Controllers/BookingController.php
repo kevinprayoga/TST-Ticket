@@ -122,6 +122,9 @@ class BookingController extends ResourceController
 
     public function viewBookingPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $capacity = $this->request->getVar('counter');
         $flight_id = $this->request->getVar('flight_id');
 
@@ -135,8 +138,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'History',
             'booking' => $model->getBooking($username),
@@ -147,8 +153,11 @@ class BookingController extends ResourceController
 
     public function viewHistorySuccessPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-success',
             'booking' => $model->getBooking($username),
@@ -159,8 +168,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryPendingPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-pending',
             'booking' => $model->getBooking($username),
@@ -171,8 +183,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryFailedPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-failed',
             'booking' => $model->getBooking($username),
