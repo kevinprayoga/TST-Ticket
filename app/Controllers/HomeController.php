@@ -24,13 +24,13 @@ class HomeController extends ResourceController
 
     public function home()
     {
-        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $response_airport = $this->getData('localhost:8080/airport/get-all');
         $data_airport = json_decode($response_airport);
 
-        foreach ($data_airport->airports as $airport) {
-            $price = $airport->price;
-            $price += ($price * 0.2);
-        }
+        // foreach ($data_airport->airports as $airport) {
+        //     $price = $airport->price;
+        //     $price += ($price * 0.2);
+        // }
 
         $viewData = [
             'title' => 'Home',
@@ -49,10 +49,10 @@ class HomeController extends ResourceController
             'capacity' => $this->request->getGet('capacity')
         ];
 
-        $response_flight = $this->getData('localhost:3000/flight/get', $getData);
+        $response_flight = $this->getData('localhost:8080/flight/get', $getData);
         $data_flight = json_decode($response_flight);
 
-        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $response_airport = $this->getData('localhost:8080/airport/get-all');
         $data_airport = json_decode($response_airport);
 
         // var_dump($getData);

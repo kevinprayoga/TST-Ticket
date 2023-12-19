@@ -12,13 +12,14 @@ class PnrAPI extends ResourceController
         $booking_id = $this->request->getVar('booking_id');
         $last_name = $this->request->getVar('last_name');
         $result = $model->getPnr($booking_id, $last_name);
-        if ($result === true) {
+        if ($result) {
             $data = [
-                'message' => 'Available!',
+                'message' => 'success',
+                'data' => $result
             ];
         } else {
             $data = [
-                'message' => 'Empty!',
+                'message' => 'unavailable',
             ];
         }
         return $this->respond($data, 200);
