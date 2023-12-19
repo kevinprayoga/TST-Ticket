@@ -3,7 +3,6 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
-use App\Models\Payment;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
