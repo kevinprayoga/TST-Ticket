@@ -1,6 +1,6 @@
 <div class="container mb-5">
     <div class="row">
-        <div class="col">
+        <div class="col m-3">
             <h1 class='fw-semibold'><emp>Booking</h1>
             <?php if(session()->getFlashdata('pesan')) : ?>  
                 <div class="alert alert-danger" role='alert'>
@@ -45,7 +45,7 @@
                     <?php
                 }
             ?>
-            <button type="submit" class="btn btn-primary mt-3">Booked</button>
+            <button type="submit" class="btn btn-primary mt-3 fw-medium px-3">Booked</button>
             </form>
         </div>
     </div>

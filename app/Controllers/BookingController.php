@@ -49,16 +49,61 @@ class BookingController extends ResourceController
 
     public function viewBookingPage()
     {
-        $model_1 = model(Booking::class);
-        $username = $this->request->getPost('username');
         $flight_id = $this->request->getGet('flight_id');
         $capacity = $this->request->getGet('counter');
         $data = [
             'title' => 'Booking',
-            'booking' => $model_1->getBooking($username),
             'flight_id' => $flight_id,
             'counter' => $capacity
         ];
-        return view('layout/header', $data).view('pages/booking', $data).view('layout/footer');
+        return view('layout/header', $data).view('pages/booking').view('layout/footer');
+    }
+
+    public function viewHistoryPage()
+    {
+        $model = model(Booking::class);
+        $username = 'ilmagita';
+        $data = [
+            'title' => 'Booking',
+            'booking' => $model->getBooking($username),
+        ];
+
+        return view('layout/header', $data).view('pages/historyPages/history', $data).view('layout/footer');
+    }
+
+    public function viewHistorySuccessPage()
+    {
+        $model = model(Booking::class);
+        $username = 'ilmagita';
+        $data = [
+            'title' => 'Booking-success',
+            'booking' => $model->getBooking($username),
+        ];
+
+        return view('layout/header', $data).view('pages/historyPages/success', $data).view('layout/footer');
+    }
+
+    public function viewHistoryPendingPage()
+    {
+        $model = model(Booking::class);
+        $username = 'ilmagita';
+        $data = [
+            'title' => 'Booking-pending',
+            'booking' => $model->getBooking($username),
+        ];
+
+        return view('layout/header', $data).view('pages/historyPages/pending', $data).view('layout/footer');
+    }
+
+    public function viewHistoryFailedPage()
+    {
+        $model = model(Booking::class);
+        $username = 'ilmagita';
+        $data = [
+            'title' => 'Booking-failed',
+            'booking' => $model->getBooking($username),
+        ];
+
+        return view('layout/header', $data).view('pages/historyPages/failed', $data).view('layout/footer');
     }
 }
