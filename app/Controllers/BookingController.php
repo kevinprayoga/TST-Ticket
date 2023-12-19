@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
+use App\Models\HomeController;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
@@ -25,10 +26,10 @@ class BookingController extends ResourceController
         $model_2 = model(Pnr::class);
 
         $booking_id = self::generateRandomString();
-        $price = $this->request->getPost('price'); // Mark Not Done
 
         //insert into booking
-        $username = $this->request->getPost('username');
+        $price = $this->request->getPost('price');
+        $username = 'ilmagita';
         $model_1->addBooking($booking_id, $username, $price);
 
         //insert into pnr
@@ -66,14 +67,12 @@ class BookingController extends ResourceController
 
     public function viewBookingPage()
     {
-        $flight_id = $this->request->getGet('flight_id');
-        $capacity = $this->request->getGet('counter');
+        $capacity = $this->request->getVar('counter');
         $data = [
             'title' => 'Booking',
-            'flight_id' => $flight_id,
             'counter' => $capacity
         ];
-        return view('layout/header', $data).view('pages/booking').view('layout/footer');
+        return view('layout/header', $data).view('pages/booking', $data).view('layout/footer');
     }
 
     public function viewHistoryPage()
@@ -81,7 +80,7 @@ class BookingController extends ResourceController
         $model = model(Booking::class);
         $username = 'ilmagita';
         $data = [
-            'title' => 'Booking',
+            'title' => 'History',
             'booking' => $model->getBooking($username),
         ];
 

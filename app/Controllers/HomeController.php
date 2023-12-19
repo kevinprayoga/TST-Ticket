@@ -26,6 +26,11 @@ class HomeController extends ResourceController
         $response_airport = $this->getData('localhost:3000/airport/get-all');
         $data_airport = json_decode($response_airport);
 
+        foreach ($data_airport->airports as $airport) {
+            $price = $airport->price;
+            $price += ($price * 0.2);
+        }
+
         $viewData = [
             'title' => 'Home',
             'airports' => $data_airport->airports

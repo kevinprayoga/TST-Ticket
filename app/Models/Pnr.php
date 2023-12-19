@@ -16,10 +16,16 @@ class Pnr extends Model
         return $query;
     }
 
-    public function getPnr()
+    public function getPnr($booking_id, $last_name)
     {
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT * FROM pnr');
-        return $query->getResult();
+        $query = $db->query('SELECT * FROM pnr WHERE booking_id = ? AND last_name = ?', [$booking_id, $last_name]);
+        $result = $query->getResult();
+
+        if (!empty($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

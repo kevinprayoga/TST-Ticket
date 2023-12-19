@@ -10,16 +10,9 @@
             <form action="booking/save" method="post">
             <?= csrf_field(); ?>
             <?php
-                
-                // $count = 2; //ini jumlah penumpang
-                // $flight_id = '22ddff'; //ini id penerbangan
-                $username = 'rayhansiregar'; //ini username
-
                 for ($i = 0; $i < $counter; $i++) {
                     ?>
                     <input type="hidden" name="count" value="<?= $counter; ?>">
-                    <input type="hidden" name="flight_id" value="<?= $flight_id; ?>">
-                    <input type="hidden" name="username" value="<?= $username; ?>">
 
                     <h3 class='fs-6 py-2 pt-3 fw-semibold'>Penumpang <?=$i+1;?></h3>
                     <div class="mb-3">

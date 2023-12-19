@@ -9,16 +9,16 @@ class PnrAPI extends ResourceController
     public function index()
     {
         $model = model(Pnr::class);
-        $result = $model->getPnr();
-        if ($result) {
+        $booking_id = $this->request->getVar('booking_id');
+        $last_name = $this->request->getVar('last_name');
+        $result = $model->getPnr($booking_id, $last_name);
+        if ($result === true) {
             $data = [
-                'message' => 'success',
-                'pnr' => $result
+                'message' => 'Available!',
             ];
         } else {
             $data = [
-                'message' => 'failed',
-                'pnr' => []
+                'message' => 'Empty!',
             ];
         }
         return $this->respond($data, 200);
