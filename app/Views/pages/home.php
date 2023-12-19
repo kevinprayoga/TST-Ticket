@@ -29,18 +29,16 @@
         <!-- Date -->
         <div class="my-3">
             <label for="date" class="form-label fw-bold">Date</label>
-            <input type="date" class="form-control" id="date" name="date" value="<?php echo $_POST['firstName'] ?? ''; ?>">
+            <input type="date" class="form-control" id="date" name="date" value="<?= "2023-12-19"; ?>">
         </div>
 
         <!-- Capacity -->
         <div class="input-group-vertical my-3">
             <label for="capacity" class="form-label fw-bold">Passengers</label>
             <select class="form-select" aria-label="capacity" name="capacity">
-                <option selected value=1>1 Person</option>
-                <option value=2>2 Persons</option>
-                <option value=3>3 Persons</option>
-                <option value=4>4 Persons</option>
-                <option value=5>5 Persons</option>
+                <?php for ($i = 1; $i < 6; $i++) : ?>
+                    <option value=<?= $i; ?>><?= $i; ?> Person</option>
+                <?php endfor; ?>
             </select>
         </div>
 
@@ -49,50 +47,4 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </form>
-
-    <p> ______________________________________________________________________________________________________________ </p>
-
-    <!-- Show Table -->
-    <div class="d-flex pl-4 w-75">
-        <table class="table align-middle table-borderless">
-            <thead>
-                <tr class="table-primary">
-                    <th scope="col"></th>
-                    <th scope="col">Flight ID</th>
-                    <th scope="col">Origin</th>
-                    <th scope="col">Destination</th>
-                    <th scope="col">Schedule</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <form method="get" action="/booking">
-                    <?php
-                    $counter = 1;
-                    foreach ($flights as $flight) :
-                    ?>
-                        <tr>
-                            <th scope="row"><?= $counter; ?></th>
-                            <td><?= $flight->id; ?></td>
-                            <td><?= $flight->origin_id; ?></td>
-                            <td><?= $flight->destination_id; ?></td>
-                            <td><?= $flight->schedule; ?></td>
-                            <td><?= $flight->duration; ?> hours</td>
-                            <td>Rp <?= number_format($flight->price, 0, ',', '.'); ?></td>
-                            <td>
-                                <input type="hidden" name="flight_id" value=<?= $flight->id; ?>>
-                                <input type="hidden" name="counter" value=<?= $count; ?>>
-                                <button type="submit" class="btn btn-primary">Book Now</button>
-                            </td>
-                        </tr>
-                    <?php
-                        $counter += 1;
-                    endforeach;
-                    ?>
-                </form>
-            </tbody>
-        </table>
-    </div>
 </div>

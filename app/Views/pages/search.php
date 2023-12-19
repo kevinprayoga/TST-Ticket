@@ -29,18 +29,17 @@
         <!-- Date -->
         <div class="my-3">
             <label for="date" class="form-label fw-bold">Date</label>
-            <input type="date" class="form-control" id="date" name="date" value="<?php echo $_POST['firstName'] ?? ''; ?>">
+            <input type="date" class="form-control" id="date" name="date" value="<?= $_GET['date'] ?? ''; ?>">
         </div>
 
         <!-- Capacity -->
         <div class="input-group-vertical my-3">
             <label for="capacity" class="form-label fw-bold">Passengers</label>
             <select class="form-select" aria-label="capacity" name="capacity">
-                <option selected value=1>1 Person</option>
-                <option value=2>2 Persons</option>
-                <option value=3>3 Persons</option>
-                <option value=4>4 Persons</option>
-                <option value=5>5 Persons</option>
+            <option selected disabled hidden value=<?= $_GET['capacity'] ?? ''; ?>> <?= $_GET['capacity'] ?? ''; ?> Person</option>
+                <?php for ($i = 1; $i < 6; $i++) : ?>
+                    <option value=<?= $i; ?>><?= $i; ?> Person</option>
+                <?php endfor; ?>
             </select>
         </div>
 

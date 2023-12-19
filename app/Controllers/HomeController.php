@@ -24,14 +24,11 @@ class HomeController extends ResourceController
 
     public function home()
     {
-        $response_flight = $this->getData('localhost:3000/flight/get-all');
         $response_airport = $this->getData('localhost:3000/airport/get-all');
-        $data_flight = json_decode($response_flight);
         $data_airport = json_decode($response_airport);
 
         $viewData = [
             'title' => 'Home',
-            'flights' => $data_flight->flights,
             'airports' => $data_airport->airports
         ];
 
@@ -63,6 +60,6 @@ class HomeController extends ResourceController
             'count' => $getData['capacity']
         ];
 
-        return view('layout/header', $viewData) . view('pages/home', $viewData) . view('layout/footer');
+        return view('layout/header', $viewData) . view('pages/search', $viewData) . view('layout/footer');
     }
 }

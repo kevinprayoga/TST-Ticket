@@ -15,9 +15,9 @@
                 // $flight_id = '22ddff'; //ini id penerbangan
                 $username = 'rayhansiregar'; //ini username
 
-                for ($i = 0; $i < $capacity; $i++) {
+                for ($i = 0; $i < $counter; $i++) {
                     ?>
-                    <input type="hidden" name="count" value="<?= $capacity; ?>">
+                    <input type="hidden" name="count" value="<?= $counter; ?>">
                     <input type="hidden" name="flight_id" value="<?= $flight_id; ?>">
                     <input type="hidden" name="username" value="<?= $username; ?>">
 

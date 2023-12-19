@@ -52,12 +52,12 @@ class BookingController extends ResourceController
         $model_1 = model(Booking::class);
         $username = $this->request->getPost('username');
         $flight_id = $this->request->getGet('flight_id');
-        $capacity = $this->request->getGet('capacity');
+        $capacity = $this->request->getGet('counter');
         $data = [
             'title' => 'Booking',
             'booking' => $model_1->getBooking($username),
             'flight_id' => $flight_id,
-            'capacity' => $capacity
+            'counter' => $capacity
         ];
         return view('layout/header', $data).view('pages/booking', $data).view('layout/footer');
     }
