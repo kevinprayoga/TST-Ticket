@@ -3,11 +3,26 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Booking;
-use App\Models\HomeController;
 use App\Models\Pnr;
 
 class BookingController extends ResourceController
 {
+    private function getData($url, $data = [])
+    {
+        $url = rtrim($url, '?'); // Remove trailing question mark if it exists
+        $url .= '?' . http_build_query($data);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $output;
+    }
+
     private static function generateRandomString() {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $randomString = '';
@@ -20,31 +35,38 @@ class BookingController extends ResourceController
         return $randomString;
     }
 
+    public function priceAfterTax($price, $quantity) {
+        return $quantity * $price * 1.2;
+    }
+
     public function save()
     {
+        $getData['flight_id'] = $this->request->getVar('flight_id');
+        $response_flight = $this->getData('localhost:8080/flight/get-per-id', $getData);
+        $data_flight = json_decode($response_flight);
+
         $model_1 = model(Booking::class);
         $model_2 = model(Pnr::class);
 
         $booking_id = self::generateRandomString();
+        $quantity = $this->request->getPost('count');
+        $flight_id = $this->request->getVar('flight_id');
 
         //insert into booking
-        $price = $this->request->getPost('price');
+        $price = $this->priceAfterTax($data_flight->flight->price, $quantity);
         $username = 'ilmagita';
-        $model_1->addBooking($booking_id, $username, $price);
+        $model_1->addBooking($booking_id, $username, $price, $flight_id);
 
         //insert into pnr
-        $quantity = $this->request->getPost('count');
         for ($i = 0; $i < $quantity; $i++) {
             $honorifics = $this->request->getPost('honorifics')[$i];
             $first_name = $this->request->getPost('first_name')[$i];
             $last_name = $this->request->getPost('last_name')[$i];
             $id_number = $this->request->getPost('id_number')[$i];
-            $flight_id = $this->request->getPost('flight_id');
 
             $model_2->addPnr($booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity);
         }
-        
-        return redirect()->to('/booking');
+        return redirect()->to('/history/pending');
     }
 
     public function pay() {
@@ -68,9 +90,12 @@ class BookingController extends ResourceController
     public function viewBookingPage()
     {
         $capacity = $this->request->getVar('counter');
+        $flight_id = $this->request->getVar('flight_id');
+
         $data = [
             'title' => 'Booking',
-            'counter' => $capacity
+            'counter' => $capacity,
+            'flight_id' => $flight_id
         ];
         return view('layout/header', $data).view('pages/booking', $data).view('layout/footer');
     }
