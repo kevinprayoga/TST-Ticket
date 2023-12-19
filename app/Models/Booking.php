@@ -21,7 +21,7 @@ class Booking extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query('UPDATE booking SET status = ? WHERE booking_id = ?', [$status, $booking_id]);
-        return $query->getResult();
+        return $query;
     }
 
     public function getBooking($username)

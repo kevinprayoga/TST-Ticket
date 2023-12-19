@@ -22,7 +22,7 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-between">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
-          <img src="./logo.png" class="img-fluid me-2" alt="logo" height="64" width="64">
+          <img src="../logo.png" class="img-fluid me-2" alt="logo" height="64" width="64">
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">

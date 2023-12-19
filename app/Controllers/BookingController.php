@@ -46,6 +46,24 @@ class BookingController extends ResourceController
         return redirect()->to('/booking');
     }
 
+    public function pay() {
+        $model = model(Booking::class);
+
+        $booking_id = $this->request->getVar('booking_id');
+        $result = $model->updateBooking($booking_id, "Success");
+
+        return redirect()->to('/history');
+    }
+
+    public function cancel() {
+        $model = model(Booking::class);
+
+        $booking_id = $this->request->getVar('booking_id');
+        $result = $model->updateBooking($booking_id, "Failed");
+
+        return redirect()->to('/history');
+    }
+
     public function viewBookingPage()
     {
         $flight_id = $this->request->getGet('flight_id');

@@ -19,6 +19,8 @@ $routes->group('history', ['namespace' => 'App\Controllers'], function($routes) 
     $routes->get('success', 'BookingController::viewHistorySuccessPage');
     $routes->get('pending', 'BookingController::viewHistoryPendingPage');
     $routes->get('failed', 'BookingController::viewHistoryFailedPage');
+    $routes->post('pending/pay', 'BookingController::pay');
+    $routes->post('pending/cancel', 'BookingController::cancel');
 });
 
 $routes->get('/pnrAPI', 'PnrAPI::index');
