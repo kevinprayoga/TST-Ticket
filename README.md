@@ -4,17 +4,6 @@
 </div>
 <br>
 
-## List of Contents
-
-1. [System Overview](#system-overview)
-2. [Core Domain](#core-domain)
-3. [Team Members](#team-members)
-4. [Tech Stack](#tech-stack)
-5. [How to Run](#how-to-run)
-6. [Deployment](#deployment)
-7. [Features](#features)
-8. [Documentation](#documentation)
-
 ## System Overview
 
 TST-Ticket merupakan suatu sistem layanan pembelian tiket pesawat yang hadir dengan tujuan untuk memudahkan customer melakukan pembelian tiket dari maskapai-maskapai yang ada dan sesuai dengan yang diinginkannya karena melakukan filtering dari rute penerbangan, jadwal, serta jumlah kursi yang diinginkan.
