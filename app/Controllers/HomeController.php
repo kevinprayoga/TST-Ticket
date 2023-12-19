@@ -27,6 +27,9 @@ class HomeController extends ResourceController
 
     public function home()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $response_airport = $this->getData('localhost:8080/airport/get-all');
         $data_airport = json_decode($response_airport);
 

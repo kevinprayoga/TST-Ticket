@@ -7,6 +7,26 @@ use App\Models\Pnr;
 
 class BookingController extends ResourceController
 {
+    public function postData($url, $data)
+    {
+        // Initialize cURL session
+        $ch = curl_init($url);
+
+        // Set the options for the cURL session
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        // Execute the cURL session and store the response
+        $response = curl_exec($ch);
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Return the response
+        return $response;
+    }
+
     private function getData($url, $data = [])
     {
         $url = rtrim($url, '?'); // Remove trailing question mark if it exists
@@ -35,7 +55,7 @@ class BookingController extends ResourceController
         return $randomString;
     }
 
-    public function priceAfterTax($price, $quantity) {
+    private function priceAfterTax($price, $quantity) {
         return $quantity * $price * 1.2;
     }
 
@@ -59,13 +79,26 @@ class BookingController extends ResourceController
 
         //insert into pnr
         for ($i = 0; $i < $quantity; $i++) {
+            $pnr = self::generateRandomString();
             $honorifics = $this->request->getPost('honorifics')[$i];
             $first_name = $this->request->getPost('first_name')[$i];
             $last_name = $this->request->getPost('last_name')[$i];
             $id_number = $this->request->getPost('id_number')[$i];
 
-            $model_2->addPnr($booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity);
+            $model_2->addPnr($pnr, $booking_id, $honorifics, $first_name, $last_name, $id_number, $flight_id, $quantity);
+
+            $airline_booking = [
+                // 'seg1' => '083fb78fe99d91ec891dc97e2ac10f14',
+                // 'seg2' => '499de4ba50697d484d8e4de59a32c3bb',
+                'flight_id' => $flight_id,
+                'pnr' => $pnr,
+            ];
+            $response_airline = $this->postData('localhost:8080/booking/create/', $airline_booking);       
+            var_dump($airline_booking);
+            var_dump($response_airline);
         }
+        var_dump($airline_booking);
+        var_dump($response_airline);
         return redirect()->to('/history/pending');
     }
 
@@ -89,6 +122,9 @@ class BookingController extends ResourceController
 
     public function viewBookingPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $capacity = $this->request->getVar('counter');
         $flight_id = $this->request->getVar('flight_id');
 
@@ -102,8 +138,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'History',
             'booking' => $model->getBooking($username),
@@ -114,8 +153,11 @@ class BookingController extends ResourceController
 
     public function viewHistorySuccessPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-success',
             'booking' => $model->getBooking($username),
@@ -126,8 +168,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryPendingPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-pending',
             'booking' => $model->getBooking($username),
@@ -138,8 +183,11 @@ class BookingController extends ResourceController
 
     public function viewHistoryFailedPage()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('/login');
+        }
         $model = model(Booking::class);
-        $username = 'ilmagita';
+        $username = session()->get('username');
         $data = [
             'title' => 'Booking-failed',
             'booking' => $model->getBooking($username),
