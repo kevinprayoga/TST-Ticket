@@ -17,7 +17,7 @@
         <div class="col">
             <?php foreach ($booking as $item): ?>
                 <?php if(($item->status === 'Failed')): ?>
-                    <div class="bg-body-tertiary rounded-3 p-3 link-body-emphasis d-flex flex-column gap-2">
+                    <div class="bg-body-tertiary rounded-3 p-3 link-body-emphasis d-flex flex-column gap-2 my-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column gap-2">
                                 <h5 class="fw-bold">ID Booking:</h5>
