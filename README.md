@@ -1,67 +1,125 @@
-# CodeIgniter 4 Application Starter
+<div align="center">
+    <h1>Tugas Besar</h1>
+    <h3>II3160 - Teknologi Sistem Terintegrasi</h3>
+</div>
+<br>
 
-## What is CodeIgniter?
+<div align="center">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Itim&size=48&pause=1000&color=4200FF&center=true&vCenter=true&random=false&width=1000&height=60&lines=Teknologi+Sistem+-+Terintegrasi;Sistem+Rumah+Sakit;Sistem+Apotek" alt="Typing SVG">
+</div>
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## List of Contents
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+1. [System Overview](#system-overview)
+2. [Core Domain](#core-domain)
+3. [Team Members](#team-members)
+4. [Tech Stack](#tech-stack)
+5. [How to Run](#how-to-run)
+6. [Deployment](#deployment)
+7. [Features](#features)
+8. [Documentation](#documentation)
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## System Overview
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+TST-Ticket merupakan suatu sistem layanan pembelian tiket pesawat yang hadir dengan tujuan untuk memudahkan customer melakukan pembelian tiket dari maskapai-maskapai yang ada dan sesuai dengan yang diinginkannya karena melakukan filtering dari rute penerbangan, jadwal, serta jumlah kursi yang diinginkan.
 
-## Installation & updates
+## Core Domain
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+Menerima jadwal penerbangan dan mengatur sistem ticketing, termasuk penunjukkan jadwal, penghargaan kursi, penerimaan identitas penumpang, serta riwayat pembelian.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Team Members
 
-## Setup
+<table>
+    <tr align="center">
+        <th>No.</th>
+        <th>Nama</th>
+        <th>NIM</th>
+    </tr>
+    <tr>
+        <td>1.</td>
+        <td>Kevin Prayoga Abdinegara</td>
+        <td>18221141</td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td>Rayhan Nugraha Putra Siregar</td>
+        <td>18221149</td>
+    </tr>
+    <tr>
+        <td>3.</td>
+        <td>Hans Stephano Edbert Njotohardjo</td>
+        <td>18221171</td>
+    </tr>
+</table>
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## Tech Stack
 
-## Important Change with index.php
+- PHP
+- Codeigniter 4 
+- Bootstrap
+- MySQL
+- phpMyAdmin
+- XAMPP
+- Postman
+- Github dan Git
+- Visual Studio Code
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## How to run
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+1. Clone respository ini dan [repository OnlyFlights](https://github.com/SirRay03/TST-Air)
 
-**Please** read the user guide for a better explanation of how CI4 works!
+2. Buka dan masuk ke dalam kedua repository di jendela yang berbeda
 
-## Repository Management
+3. Copy content .env.example ke dalam .env
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+4. Download & install XAMPP [Link](https://www.apachefriends.org/)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+5. Buka XAMPP, lalu run Apache & MySQL (phpMyAdmin) Service
 
-## Server Requirements
+6. Setup aplikasi menggunakan command berikut
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+```
+composer install
+composer update
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+7. Masukkan database yang disimpan dalam root folder masing-masing repository ke dalam [phpMyAdmin](localhost/phpmyadmin)
 
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+8. Jalankan aplikasi menggunakan command berikut pada terminal setiap jendela
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+TST-Ticket  ```php spark serve --port 3000```
+OnlyFlights ```php spark serve --port 8080```
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+6. Service TST-Ticket berjalan pada http://localhost:3000 dan OnlyFlights berjalan pada http://localhost:8080
+
+7. Berikut informasi akun yang dapat digunakan untuk login
+```
+# Login TST-Ticket
+username: ilmagita
+password: akujember
+
+# Login Onlyflights
+username: admin@onlyflights.18s
+password: password123
+```
+
+
+## Features
+
+1. **Login** - Login menjadi langkah pertama bagi pengguna untuk dapat mengakses sistem untuk mencegah penggunaan yang tidak bertanggung jawab.
+
+2. **Search for Flights** - User dapat mencari penerbangan berdasarkan bandara keberangkatan, tujuan, tanggal, serta jumlah penumpang.
+
+3. **Book Flights** - User dapat melakukan pemesanan terhadap penerbangan yang ditampilkan.
+  
+4. **Add Passenger Details** - User dapat mengisi data penumpang sesuai dengan jumlah tiket atau kursi yang ingin dipesan.
+   
+5. **Booking History** - User dapat melihat riwayat pemesanan tiket yang dapat dikategorikan menjadi Success, Pending, atau Failed.
+
+6. **Pay or Cancel** - User dapat memilih untuk melakukan pembayaran dengan harga sejumlah kursi yang dipesan pada pemesanan yang masih berstatus pending pada riwayat.
+
+
+## Documentation
+[Documentation](https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY)
+
+*Development processes and interfaces are provided in the document.*
