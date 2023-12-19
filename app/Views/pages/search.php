@@ -77,8 +77,14 @@
                             <td><?= $flight->id; ?></td>
                             <td><?= $flight->origin_id; ?></td>
                             <td><?= $flight->destination_id; ?></td>
-                            <td><?= $flight->schedule; ?></td>
-                            <td><?= $flight->duration; ?> hours</td>
+                            <td>
+                                <?php
+                                $date = strtotime($flight->schedule);
+                                echo date('d M Y H:m', $date);
+                                ?>
+                                 WIB
+                            </td>
+                            <td><?= substr($flight->duration, 0, 2); ?> hours</td>
                             <td>Rp <?= number_format($flight->price, 0, ',', '.'); ?></td>
                             <td>
                                 <input type="hidden" name="flight_id" value=<?= $flight->id; ?>>
