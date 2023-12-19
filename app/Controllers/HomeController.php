@@ -6,46 +6,63 @@ use CodeIgniter\RESTful\ResourceController;
 
 class HomeController extends ResourceController
 {
-    private function getSchedule($url)
+    private function getData($url, $data = [])
     {
+        $url = rtrim($url, '?'); // Remove trailing question mark if it exists
+        $url .= '?' . http_build_query($data);
+
         $ch = curl_init();
-
-        // set url 
         curl_setopt($ch, CURLOPT_URL, $url);
-
-        // return the transfer as a string 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        // $output contains the output string 
         $output = curl_exec($ch);
 
-        // tutup curl 
         curl_close($ch);
 
-        // menampilkan hasil curl
-        echo $output;
+        return $output;
     }
 
-    /**
-     * Return an array of resource objects, themselves in array format
-     *
-     * @return mixed
-     */
-    public function index()
+    public function home()
     {
-        $response = $this->getSchedule("localhost:3000/xxxxx");
+        $response_flight = $this->getData('localhost:3000/flight/get-all');
+        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $data_flight = json_decode($response_flight);
+        $data_airport = json_decode($response_airport);
 
-        return view("pages/home", $response['data']);
+        $viewData = [
+            'title' => 'Home',
+            'flights' => $data_flight->flights,
+            'airports' => $data_airport->airports
+        ];
+
+        return view('layout/header', $viewData) . view('pages/home', $viewData) . view('layout/footer');
     }
 
-    /**
-     * Return the properties of a resource object
-     *
-     * @return mixed
-     */
-    public function show($id = null)
+    public function search()
     {
-        //
-    }
+        $getData = [
+            'origin' => $this->request->getGet('origin'),
+            'destination' => $this->request->getGet('destination'),
+            'date' => $this->request->getGet('date'),
+            'capacity' => $this->request->getGet('capacity')
+        ];
 
+        $response_flight = $this->getData('localhost:3000/flight/get', $getData);
+        $data_flight = json_decode($response_flight);
+
+        $response_airport = $this->getData('localhost:3000/airport/get-all');
+        $data_airport = json_decode($response_airport);
+
+        var_dump($getData);
+        var_dump($data_flight);
+
+        $viewData = [
+            'title' => 'Search Result',
+            'flights' => $data_flight->flights,
+            'airports' => $data_airport->airports,
+            'count' => $getData['capacity']
+        ];
+
+        return view('layout/header', $viewData) . view('pages/home', $viewData) . view('layout/footer');
+    }
 }
