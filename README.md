@@ -105,6 +105,6 @@ password: password123
 
 
 ## Documentation
-[Documentation](https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY)
+[Documentation](https://docs.google.com/document/d/1FnAY38R1CNYTHnfE0iYoWzLuyNaCG9eu3U7hV4vAC2U/edit?tab=t.0#heading=h.aea4k8tl6sve)
 
 *Development processes and interfaces are provided in the document.*
